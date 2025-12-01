@@ -1,149 +1,110 @@
-# 🎂 Cake Viewer - Angular App with Three.js
+# Cake Viewer — Angular + Three.js
 
-A beautiful 3D rotating rectangular cake viewer built with **Angular 21** (zoneless) and **Three.js**.
+A small Angular application that demonstrates a 3D cake viewer implemented with Three.js. The app uses Angular's zoneless bootstrap (via `bootstrapApplication`) and a lightweight Three.js scene managed in `src/app/shared/threejs`.
 
-## ✨ Features
+## Quick summary
 
-- 🎂 Rotating rectangular sheet cake with rounded frosting edges
-- 🏆 Golden rectangular base/platform
-- 🎨 Clean, minimal background perfect for bakery websites
-- ⚡ Zoneless Angular for optimal performance
-- 📱 Responsive design
-- 🎮 Interactive camera controls (drag to rotate, scroll to zoom)
+- Angular version: 21 (zoneless bootstrap in `src/main.ts`)
+- Three.js for 3D rendering (types in `devDependencies`)
+- Project uses `bun` in the npm scripts, but it can be run with standard Node tooling as described below
 
-## 🚀 Getting Started
+## Prerequisites
 
-### Prerequisites
+- Node.js 18+ (required)
+- Bun (optional, recommended): scripts in `package.json` call `bun` (see below). If you don't have Bun, use `npx` for Angular CLI commands.
 
-- Node.js 18+ or **Bun 1.3+** (recommended)
-- This project uses **Bun** for faster installs and builds
+## Installation
 
-### Installation
+With Bun (recommended):
 
-1. **Install dependencies:**
-   ```bash
-   bun install
-   # or
-   npm install
-   ```
+```bash
+bun install
+```
 
-2. **Start the development server:**
-   ```bash
-   bun start
-   # or
-   npm start
-   ```
+With npm/yarn (no Bun):
 
-3. **Open your browser:**
-   Navigate to `http://localhost:4200`
+```bash
+npm install
+# or
+# yarn install
+```
 
-## 📁 Project Structure
+## Run (development)
+
+Preferred (with Bun):
+
+```bash
+bun start
+```
+
+If you don't have Bun installed, start with the Angular CLI directly:
+
+```bash
+npx ng serve --open
+```
+
+The app serves on `http://localhost:4200` by default.
+
+## Build
+
+With Bun:
+
+```bash
+bun run ng build
+```
+
+With npm (if you prefer):
+
+```bash
+npm run build
+```
+
+Build artifacts will be placed in `dist/`.
+
+## Useful scripts (from `package.json`)
+
+- `start` — start dev server (`bun start`) or use `npx ng serve`
+- `build` — production build (`bun run ng build`)
+- `watch` — build in watch mode
+- `test` — run tests via Angular CLI
+- `lint` / `lint:fix` — ESLint checks and fixes
+- `format` / `format:check` — Prettier formatting
+- `check` — runs format check and lint
+
+## Project structure (key files)
 
 ```
 src/
 ├── app/
-│   ├── cake-viewer/                    # Cake viewer component
-│   │   ├── cake-viewer.component.ts
-│   │   ├── cake-viewer.component.html
-│   │   └── cake-viewer.component.scss
+│   ├── cake-viewer/                # `app-cake-viewer` component (HTML/SCSS/TS)
 │   ├── shared/
-│   │   └── threejs/                    # Three.js utilities
-│   │       ├── three-scene.service.ts  # Scene management
-│   │       ├── core/                   # Core Three.js factories
-│   │       │   ├── camera.factory.ts
-│   │       │   ├── renderer.factory.ts
-│   │       │   ├── controls.factory.ts
-│   │       │   ├── lights.factory.ts
-│   │       │   └── loop.service.ts
-│   │       └── models/                 # 3D model factories
-│   │           ├── cake.factory.ts
-│   │           └── room.factory.ts
-│   └── app.component.ts               # Root component
+│   │   └── threejs/                # Three.js scene utilities and factories
+│   │       ├── three-scene.service.ts
+│   │       └── core/               # camera, renderer, controls, lights, loop
+│   │           ├── camera.factory.ts
+│   │           ├── renderer.factory.ts
+│   │           ├── controls.factory.ts
+│   │           └── lights.factory.ts
+│   └── app.component.ts            # Root component
 ├── index.html
-├── main.ts                            # Zoneless bootstrap
+├── main.ts                         # Zoneless bootstrap (uses provideZonelessChangeDetection)
 └── styles.scss
 ```
 
-## 🎯 Technologies
+## Notes about the code
 
-- **Angular 21** - Zoneless Angular with signals
-- **Three.js** - 3D graphics library
-- **TypeScript 5.9** - Full type safety
-- **SCSS** - Component styling
+- The app uses a zoneless bootstrap in `src/main.ts` (`provideZonelessChangeDetection()`).
+- The Three.js scene is organised in `src/app/shared/threejs`: factories for camera/renderer/controls/lights and model factories like `cake.factory.ts` and `room.factory.ts`.
+- `app-cake-viewer` is the demo component that renders the cake scene (see `src/app/cake-viewer`).
 
-## 🎨 Cake Viewer Component
+## Example usage (component)
 
-The cake viewer is a standalone Angular component that can be used anywhere:
-
-```typescript
-<app-cake-viewer 
-  [width]="3"
-  [height]="0.4"
-  [depth]="2"
-  [autoRotate]="true"
-  [rotationSpeed]="0.5">
-</app-cake-viewer>
+```html
+<app-cake-viewer></app-cake-viewer>
 ```
 
-### Configuration Options
+Check the component inputs in the component file if you want to customise parameters (width, height, rotation options).
 
-- `[width]` - Cake width (default: 3)
-- `[height]` - Cake height (default: 0.4)
-- `[depth]` - Cake depth (default: 2)
-- `[autoRotate]` - Enable auto rotation (default: true)
-- `[rotationSpeed]` - Rotation speed (default: 0.5)
-- `[backgroundColor]` - Background color (default: 0xf5f5f0)
-
-## ⚡ Zoneless Angular
-
-This project uses Angular 21 zoneless change detection:
-
-- No Zone.js dependency
-- Uses signals for reactive state
-- Uses `effect()` for side effects
-- `OnPush` change detection for performance
-- Render loop runs outside Angular zone
-
-## 🛠️ Building
-
-Build for production:
-```bash
-bun build
-# or
-npm run build
-```
-
-The build artifacts will be stored in the `dist/` directory.
-
-## 📝 Development
-
-Watch mode:
-```bash
-bun watch
-# or
-npm run watch
-```
-
-### Available Scripts
-
-```bash
-bun start       # Start dev server
-bun build       # Production build
-bun watch       # Watch mode
-bun lint        # Run ESLint
-bun lint:fix    # Auto-fix lint issues
-bun format      # Format code with Prettier
-bun check       # Run format check + lint
-```
-
-## 🎯 Usage in Your Bakery Website
-
-Perfect for:
-- Product configuration pages
-- Cake customization interfaces
-- Real-time 3D preview
-- Interactive product showcases
-
-## 📄 License
+## License
 
 MIT
