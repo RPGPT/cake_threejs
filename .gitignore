@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Bun
+.bun/
+bun.lockb
+# Keep bun.lock (text format) for version control
+
+# Build outputs
+dist/
+build/
+out-tsc/
+
+# Environment variables
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-error.log
+
+# Angular
+.angular/
+*.tsbuildinfo

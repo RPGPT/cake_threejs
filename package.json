@@ -1,0 +1,47 @@
+{
+  "name": "cake-viewer-angular",
+  "version": "1.0.0",
+  "description": "Angular app with Three.js cake viewer - Zoneless Angular 21",
+  "scripts": {
+    "ng": "ng",
+    "start": "bun run ng serve",
+    "build": "bun run ng build",
+    "watch": "bun run ng build --watch --configuration development",
+    "test": "bun run ng test",
+    "lint": "bun run ng lint",
+    "lint:fix": "bun run ng lint --fix",
+    "format": "bun run prettier --write \"src/**/*.{ts,html,scss,css,json}\"",
+    "format:check": "bun run prettier --check \"src/**/*.{ts,html,scss,css,json}\"",
+    "check": "bun run format:check && bun run lint"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^21.0.0",
+    "@angular/common": "^21.0.0",
+    "@angular/compiler": "^21.0.0",
+    "@angular/core": "^21.0.0",
+    "@angular/forms": "^21.0.0",
+    "@angular/platform-browser": "^21.0.0",
+    "@angular/platform-browser-dynamic": "^21.0.0",
+    "@angular/router": "^21.0.0",
+    "rxjs": "~7.8.0",
+    "three": "^0.170.0",
+    "tslib": "^2.8.1"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^21.0.0",
+    "@angular/cli": "^21.0.0",
+    "@angular/compiler-cli": "^21.0.0",
+    "@types/three": "^0.170.0",
+    "angular-eslint": "21.0.1",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsdoc": "^61.4.1",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-prettier": "^5.5.4",
+    "prettier": "^3.7.3",
+    "typescript": "~5.9.0",
+    "typescript-eslint": "8.46.4"
+  }
+}
